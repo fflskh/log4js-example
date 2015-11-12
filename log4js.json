@@ -1,0 +1,71 @@
+{
+  "appenders":
+  [
+    {
+      "category":"相当于日志的名称，在后续使用log4js.getLogger(xxx)方法时，xxx既是category，且需要相同",
+      "category":"console",
+      "type":"type为日志类型，主要有3种类型——console：输出到终端；file-输出到文件；datefile：输出到文件，但是可以通过其他参数来将日期指定在文件名里面",
+      "type":"console"
+    },
+    {
+      "category":"log_info",
+      "type": "file",
+      "filename": "文件名称",
+      "filename": "详细的业务日志",
+      "filename": "./logs/info.log",
+      "maxLogSize": "文件最大尺寸",
+      "maxLogSize": 104857500,
+      "backups": "最大的文件备份数量",
+      "backups": 100
+    },
+    {
+      "category": "log_stat",
+      "type": "datefile",
+      "filename":"stat一般记录一些统计信息",
+      "filename": "./logs/stat",
+      "alwaysIncludePattern": "只在type:datefile模式有效，是否开启pattern",
+      "alwaysIncludePattern": true,
+      "pattern" : "只在type:datefile模式有效,表示一个文件的时间命名模式(注意MM和mm的区别)。如下模式，文件名则会如：stat-2015-11-12.log",
+      "pattern" : "-yyyy-MM-dd.log"
+    },
+    {
+      "category": "log_trace",
+      "type": "datefile",
+      "filename":"trace一般记录一些比较海量的信息，例如每个顾客请求的请求类型，消息内容，用户名，便于定位一个用户的所有操作",
+      "filename": "./logs/trace",
+      "alwaysIncludePattern": true,
+      "pattern" : "-yyyy-MM-dd.log"
+    },
+    {
+      "category": "log_error",
+      "type": "datefile",
+      "filename":"error一般记录错误信息",
+      "filename": "./logs/error",
+      "alwaysIncludePattern": true,
+      "pattern" : "-yyyy-MM-dd.log"
+    },
+    {
+      "category": "log_todo",
+      "type": "datefile",
+      "filename":"todo一般记录需要管理员处理的信息或事务",
+      "filename": "./logs/todo",
+      "alwaysIncludePattern": true,
+      "pattern" : "-yyyy-MM-dd.log"
+    }
+  ],
+  "replaceConsole": "是否替代nodejs的console",
+  "replaceConsole": true,
+
+  "levels": "levels配置了各种category所具有的日志级别（低于该级别的日志将不会被记录）",
+  "levels": "为category:level的模式，其中appender参数中的category必须与levels中配置的category相同,才会起相应的作用",
+  "levels": "levels的级别由低到高分别是ALL,TRACE,DEBUG,INFO,WARN,ERROR,FATAL,OFF",
+  "levels":
+  {
+    "console" : "WARN",
+    "log_info":"INFO",
+    "log_stat": "INFO",
+    "log_trace":"TRACE",
+    "log_error":"ERROR",
+    "log_todo":"WARN"
+  }
+}
